@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "build": {
+    "env": {
+      "PRISMA_URL": "@dburl",
+      "GRAPHQL_API": "https://fonts-edelman215.fabulas.now.sh/api/graphql"
+    }
+  },
+  "env": {
+    "PRISMA_URL": "@dburl",
+    "GRAPHQL_API": "https://fonts-edelman215.fabulas.now.sh/api/graphql"
+  }
+}

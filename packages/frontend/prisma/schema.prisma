@@ -1,0 +1,90 @@
+generator photon {
+  provider      = "photonjs"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("PRISMA_URL")
+}
+
+model Font {
+  ascender           Int        @default(0)
+  compatibleFullName String?
+  copyright          String?
+  createdAt          DateTime
+  descender          Int        @default(0)
+  description        String?
+  designer           String?
+  designerURL        String?
+  family             FontFamily
+  fontFamily         String?
+  fontFile           String?
+  fontSubfamily      String?
+  fullName           String?
+  id                 String     @id
+  license            String?
+  licenseURL         String?
+  manufacturer       String?
+  manufacturerURL    String?
+  numberOfHMetrics   Int?
+  numGlyphs          Int?
+  outlinesFormat     String?
+  postScriptName     String?
+  preferredFamily    String?
+  preferredSubfamily String?
+  sampleText         String?
+  supported          Boolean    @default(false)
+  trademark          String?
+  uniqueID           String?
+  unitsPerEm         Int        @default(0)
+  updatedAt          DateTime
+  version            String?
+  glyphs             Glyph[]    @relation(references: [font])
+}
+
+model FontFamily {
+  category     String     @default("")
+  createdAt    DateTime
+  family       String     @default("") @unique
+  id           String     @id
+  kind         String     @default("")
+  lastModified DateTime
+  subsets      String[]
+  updatedAt    DateTime
+  variants     String[]
+  version      String     @default("")
+  fonts        Font[]
+  fontFiles    FontFile[] @relation(references: [fontFamily])
+}
+
+model FontFile {
+  createdAt  DateTime
+  file       String      @default("")
+  fontFamily FontFamily?
+  id         String      @id
+  name       String      @default("")
+  updatedAt  DateTime
+}
+
+model Glyph {
+  advanceWidth     Float?
+  createdAt        DateTime
+  font             Font?
+  id               String   @id
+  index            Int?
+  leftSideBearing  Float?
+  name             String?
+  rightSideBearing Float?
+  unicode          Int?
+  unicodes         String[]
+  updatedAt        DateTime
+  x1               Float?
+  x2               Float?
+  xMax             Float?
+  xMin             Float?
+  y1               Float?
+  y2               Float?
+  yMax             Float?
+  yMin             Float?
+}
