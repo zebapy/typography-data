@@ -1,0 +1,40 @@
+{
+  "name": "fly",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Michael Edelman",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": "12.x"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "build": "cd packages/frontend && yarn build",
+    "start": "yarn workspace frontend start",
+    "codegen:client": "apollo client:codegen --config=apollo.config.js --target=typescript --outputFlat packages/frontend/types"
+  },
+  "devDependencies": {
+    "@prisma/sdk": "^0.0.105",
+    "@types/node": "^13.1.1",
+    "@types/node-fetch": "^2.5.4",
+    "@types/react": "^16.9.17",
+    "@types/react-dom": "^16.9.4",
+    "@types/ws": "^6.0.4",
+    "apollo": "^2.21.2",
+    "create-nexus-type": "^1.1.2",
+    "dotenv": "^8.2.0",
+    "graphql-yoga": "^1.18.3",
+    "ts-node": "^8.5.4",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "^3.7.4",
+    "graphql": "^14.5.8",
+    "prisma2": "^2.0.0-preview019",
+    "@prisma/photon": "^2.0.0-preview019"
+  },
+  "dependencies": {}
+}

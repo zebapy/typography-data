@@ -1,0 +1,21 @@
+{
+  "name": "fonts",
+  "version": 2,
+  "builds": [
+    { "src": "packages/frontend/package.json", "use": "@now/next@canary" }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*)", "dest": "/packages/frontend/$1" }
+  ],
+  "build": {
+    "env": {
+      "PRISMA_URL": "@dburl",
+      "GRAPHQL_API": "https://fonts-edelman215.fabulas.now.sh/api/graphql"
+    }
+  },
+  "env": {
+    "PRISMA_URL": "@dburl",
+    "GRAPHQL_API": "https://fonts-edelman215.fabulas.now.sh/api/graphql"
+  }
+}
